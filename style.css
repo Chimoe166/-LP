@@ -1,0 +1,600 @@
+@charset "UTF-8";
+
+/*****common items*****/
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #2c3e50;
+  margin: 40px 0 20px;
+  position: relative;
+  animation: fadeIn 1.5s ease;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #6ba8a9;
+  margin: 12px auto 0;
+  border-radius: 2px;
+  animation: underline 1.2s ease forwards;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    font-family: Zen Maru Gothic;
+    font-weight: bold;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes underline {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
+
+/*****top*****/
+.header-wrap {
+  display: flex;              /* 横並び */
+  align-items: center;        /* 高さを中央揃え */
+  gap: 20px;                  /* 2つの間に余白 */
+  padding: 10px;
+}
+
+/* ロゴ */
+.logo img {
+  width: 180px;               /* サイズ調整 */
+  height: auto;
+}
+
+.basic.information {
+  display: flex;              /* 横並び */
+  align-items: center;        /* 高さを中央揃え */
+  gap: 20px;                  /* 要素間の余白 */
+  padding: 10px 15px;
+  border: 1px solid #ddd;     /* 枠線（おしゃれに見せる用） */
+  border-radius: 8px;
+  background: #f9f9f9;
+  max-width: 600px;
+}
+
+/* date */
+.basic.information .date {
+  font-size: 1rem;
+  color: #333;
+  min-width: 90px;            /* 幅を固定して整列 */
+  margin: 0;
+}
+
+/* img */
+.basic.information img {
+  width: 100px;               /* 大きさ調整 */
+  height: auto;
+  border-radius: 4px;
+  flex-shrink: 0;             /* 画像が潰れないように固定 */
+}
+
+/* time */
+.basic.information .time {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* mainvisual */
+.slideshow {
+  position: relative;
+  width: 100%;  
+  height: 500px;
+  margin: 0;
+  overflow: hidden;
+}
+
+/*slideshow*/
+.slideshow img {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* 画像をトリミングしてフィット */
+  opacity: 0;
+  animation: fade 25s ease-in-out infinite;
+}
+
+.slideshow img:nth-child(1) { animation-delay: 0s; }
+.slideshow img:nth-child(2) { animation-delay: 5s; }
+.slideshow img:nth-child(3) { animation-delay: 10s; }
+.slideshow img:nth-child(4) { animation-delay: 15s; }
+.slideshow img:nth-child(5) { animation-delay: 20s; }
+
+@keyframes fade {
+  0%    { opacity: 0; }
+  8%    { opacity: 1; }   /* フェードイン */
+  20%   { opacity: 1; }   /* 表示維持 */
+  28%   { opacity: 0; }   /* フェードアウト */
+  100%  { opacity: 0; }
+}
+
+/*sidebar*/
+/* サイドバー全体 */
+#navi {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+/* 各リンク */
+#navi li a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #2E4A62; /* ベースカラー */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 25px;
+  padding: 8px 14px;
+  min-width: 120px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* 丸いアイコン部分 */
+#navi li a::before {
+  content: "●"; /* アイコンの代わり（Font Awesome等に置き換え可） */
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  line-height: 24px;
+}
+
+/* ホバー時 */
+#navi li a:hover {
+  background: #2c6cbf;
+  transform: translateX(-4px);
+}
+
+/*calender*/
+.calender {
+  display: flex;
+  gap: 10px; /* 画像間のスペース */
+  justify-content: center; /* 横方向中央揃え */
+  align-items: center; /* 縦方向中央揃え（必要なら） */
+}
+
+.calender img {
+  max-width: 100%; /* 画像がコンテナ幅を超えないように */
+  height: auto;
+  width: 300px; /* すべての画像の横幅を300pxに統一 */
+  height: auto; /* 縦横比を維持 */
+  object-fit: contain; /* 画像の切れを防ぐ */
+}
+
+
+/*****events*****/
+#events ul.move {
+  display: flex;
+  overflow: hidden;       /* スクロールバー非表示 */
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#events ul.move li {
+  flex: 0 0 auto;
+  width: 274px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #f9f9f9;
+}
+
+#events ul.move li img {
+  max-width: 100%;
+  display: block;
+  margin-bottom: 8px;
+}
+
+#events ul.move li h4, 
+#events ul.move li p {
+  text-align: center;
+  padding: 8px;
+}
+
+
+
+/*****floor guide*****/
+/*floor map*/
+.floor-map {
+    text-align: center;  /* 画像を横方向中央寄せ */
+}
+
+.floor-map img {
+  max-width: 90%;    
+  height: auto;
+  display: inline-block; /* text-align の効果を受けるため */
+}
+#floor-guide .scroll-container{
+    overflow-x: auto;
+    max-width: 1000px;
+    margin:0 auto;
+}
+
+#floor-guide ul.move {
+  display: flex;    
+  width:fit-content ;         /* 横並びに */       /* 横スクロールできる */
+  gap: 24px;                /* アイテム間のスペース */
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;         /* リストの点を消す */
+  scroll-snap-type: x mandatory; /* スクロールのスナップ効果（任意） */
+  scroll-behavior: smooth;  /* スムーズスクロール */
+  justify-content: center; 
+}
+
+/*move*/
+ul.move {
+  display: flex;             /* 横並びに */
+  overflow-x: auto;         /* 横スクロールできる */
+  gap: 24px;                /* アイテム間のスペース */
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;         /* リストの点を消す */
+  scroll-snap-type: x mandatory; /* スクロールのスナップ効果（任意） */
+  scroll-behavior: smooth;  /* スムーズスクロール */
+  justify-content: center; 
+}
+
+ul.move li {
+  flex: 0 0 400px;          /* 幅を固定（300pxなどお好みで調整） */
+  scroll-snap-align: start; /* スナップの位置 */
+  background: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+ul.move li h2 {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+ul.move li img {
+  width: 100%;             
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+ul.move li p {
+  font-size: 0.9em;
+  line-height: 1.4;
+  letter-spacing: 2px;
+  object-fit: cover;
+}
+
+/* slider */
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 4/3; /* 仮の比率。実際の画像に合わせて調整 */
+    overflow: hidden;
+}
+
+.slider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: fade 6s infinite;
+}
+
+/* 最初の画像はすぐ表示 */
+.slider img:nth-child(1) {
+    animation-delay: 0s;
+    opacity: 1;
+}
+
+/* 2枚目は3秒後にフェードイン */
+.slider img:nth-child(2) {
+    animation-delay: 3s;
+}
+
+@keyframes fade {
+    0%   { opacity: 0; }
+    10%  { opacity: 1; }
+    40%  { opacity: 1; }
+    50%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+
+/*****services******/
+/* --- タブ全体 --- */
+    .tab-container {
+      width: 100%;
+      text-align: center; /* タブ中央配置 */
+      padding-top: 20px;
+    }
+
+    /* ラジオボタン非表示 */
+    .tab-container input[type="radio"] {
+      display: none;
+    }
+
+    /* タブラベル */
+    .tab-container label {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      padding: 10px;
+      background: white;
+      color: #333;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      margin: 0 5px;
+      border-radius: 8px 8px 0 0;
+      font-weight: bold;
+      font-family: Zen Maru Gothic;
+      transition: background 0.3s;
+    }
+
+    /* タブラベルのアイコン */
+    .tab-container label img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 5px;
+    }
+
+    /* 選択中タブ */
+    .tab-container input[type="radio"]:checked + label {
+      background: #D9E6F2;
+      border-bottom: 1px solid #fff;
+    }
+
+    /* --- コンテンツ領域 --- */
+    .tab-content {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background: #fff;
+      border-radius: 0 8px 8px 8px;
+      margin: 0 auto;
+      max-width: 900px;
+      text-align: left;
+    }
+
+    /* 選択中のコンテンツを表示 */
+    #tab1:checked ~ #book,
+    #tab2:checked ~ #post,
+    #tab3:checked ~ #group-use,
+    #tab4:checked ~ #eating,
+    #tab5:checked ~ #copy,
+    #tab6:checked ~ #bouldering {
+      display: block;
+    }
+
+    /* カード風デザイン */
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .card img {
+      width: 100px;
+      height: auto;
+      border-radius: 6px;
+    }
+    h3 {
+      margin: 5px 0;
+    }
+
+    /* 図書機能details余白　*/
+    .book > div {
+        margin-bottom: 2rem;
+    }
+
+    .book > div:last-child {
+        margin-bottom: 0;
+    }
+
+/******access******/
+#access .map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/******footer******/
+footer {
+  text-align: center;
+}
+
+
+/*****responsive*****/
+/* ========================
+   スマホ (〜768px)
+======================== */
+@media (max-width: 768px) {
+  /* ヘッダー */
+  .header-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .logo img {
+    width: 140px;
+  }
+
+  .basic.information {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .basic.information img {
+    width: 80px;
+  }
+
+  /* メインビジュアル */
+  .slideshow {
+    height: 250px;
+  }
+
+  /* サイドナビ → 下に移動 */
+  #navi {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    right: 0;
+    left: 0;
+    transform: none;
+    flex-direction: row;
+    justify-content: space-around;
+    background: rgba(46, 74, 98, 0.9);
+    padding: 5px 0;
+  }
+  #navi li a {
+    font-size: 12px;
+    min-width: auto;
+    padding: 5px 8px;
+    border-radius: 8px;
+  }
+  #navi li a::before {
+    display: none; /* スマホでは丸アイコン非表示 */
+  }
+
+  /* カレンダー */
+  .calender {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .calender img {
+    width: 100%;
+  }
+
+  /* イベント */
+  #events ul.move {
+    flex-direction: column;
+    align-items: center;
+  }
+  #events ul.move li {
+    width: 90%;
+  }
+
+  /* フロアガイド */
+  ul.move {
+    flex-direction: column;
+    align-items: center;
+  }
+  ul.move li {
+    flex: 1 1 auto;
+    width: 90%;
+  }
+
+  /* サービスのタブ */
+  .tab-container label {
+    width: 30%;
+    font-size: 12px;
+  }
+  .tab-container label img {
+    width: 70px;
+    height: 70px;
+  }
+  .tab-content {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  /* Google Map */
+  #access .map iframe {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+/* ========================
+   タブレット (768px〜1024px)
+======================== */
+@media (max-width: 1024px) {
+  .header-wrap {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .slideshow {
+    height: 350px;
+  }
+
+  .basic.information {
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #events ul.move li {
+    width: 45%;
+  }
+
+  ul.move li {
+    flex: 1 1 45%;
+  }
+
+  .tab-container label {
+    width: 100px;
+  }
+}
