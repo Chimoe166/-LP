@@ -459,6 +459,7 @@ ul.move li p {
 /******footer******/
 footer {
   text-align: center;
+  padding-bottom: 40px;
 }
 
 
@@ -588,10 +589,6 @@ footer {
 
   #events ul.move li {
     width: 45%;
-  }
-
-  ul.move li {
-    flex: 1 1 45%;
   }
 
   .tab-container label {
